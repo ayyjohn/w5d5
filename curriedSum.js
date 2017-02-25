@@ -1,4 +1,4 @@
-let sum = require ("./arguments.js");
+// let sum = require ("./arguments.js");
 
 function curriedSum(numArgs) {
   let numbers = [];
@@ -17,26 +17,26 @@ function curriedSum(numArgs) {
 
 Function.prototype.myCurry = function(numArgs){
   let args = [];
-
+  let that = this;
   return function _myCurry(arg){
     args.push(arg);
 
     if (args.length === numArgs){
-      return this.apply(this, args);
+      return that.apply(that, args);
     } else {
-      return this._myCurry;
+      return _myCurry;
     }
   };
 };
+//
+// const result = curriedSum(4);
+// console.log(result(5)(30)(20)(1));
 
-const result = curriedSum(4);
-console.log(result(5)(30)(20)(1));
+function sumThree(num1, num2, num3) {
+  return num1 + num2 + num3;
+}
 
-// function sumThree(num1, num2, num3) {
-//   return num1 + num2 + num3;
-// }
-
-// console.log(sumThree.myCurry(3)(4)(20)(6));
+console.log(sumThree.myCurry(3)(4)(20)(6));
 
 
 //  ALSO WORKS //
